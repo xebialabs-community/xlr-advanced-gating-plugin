@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright 2021 Digital.ai
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+  <!-- Tasks -->
+  <type type="advancedGating.Gate" extends="xlrelease.PythonScript" label="Advanced Gating: Gate">
+    <property name="iconLocation" category="input" hidden="true" default="advancedGating/AdvancedGating.png"/>
+    <property name="taskColor" category="input" hidden="true" default="#CC4A3C"/>
+    <property name="conditions" category="input" kind="map_string_string" description="Condition names and conditional expressions"/>
+    <property name="conditionsType" category="input" kind="enum" default="AND" description="Pass this task if all of the criteria pass (AND) or any of the criteria pass (OR)">
+      <enum-values>
+        <value>AND</value>
+        <value>OR</value>
+      </enum-values>
+    </property>
+    <property name="useOutput" category="input" kind="boolean" description="Complete this task, regardless of whether conditions pass/fail (use the task output in later tasks)"/>
+    <property name="gatePassed" category="output" description="Whether all conditions"/>
+  </type>
+</synthetic>
