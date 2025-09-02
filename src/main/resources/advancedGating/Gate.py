@@ -14,14 +14,20 @@ if conditionsType == "AND":
 else:
     gatePassed = any(results)
 
-if not useOutput and not gatePassed:
-    raise Exception("Gate failed with results list: {}".format(results))
-
 table = u"""
 |Condition|Result|
 |---|---|
 """
 for index, condition in enumerate(conditions.keys()):
     result = u"\u2714" if results[index] else u"\u2717"
-    table += u"|{}|{}|\n".format(unicode(condition, "utf-8") + u"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", result)
+    # Handle both Python 2 and 3 compatibility for unicode
+    try:
+        condition_text = unicode(condition, "utf-8")
+    except NameError:
+        # Python 3 - unicode is str
+        condition_text = str(condition)
+    table += u"|{}|{}|\n".format(condition_text + u"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", result)
 print(table)
+
+if not useOutput and not gatePassed:
+    raise Exception("Gate failed with results list: {}".format(results))
