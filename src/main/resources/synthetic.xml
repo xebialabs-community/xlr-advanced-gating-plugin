@@ -12,14 +12,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <type type="advancedGating.Gate" extends="xlrelease.PythonScript" label="Advanced Gating: Gate">
     <property name="iconLocation" category="input" hidden="true" default="advancedGating/AdvancedGating.png"/>
     <property name="taskColor" category="input" hidden="true" default="#CC4A3C"/>
-    <property name="conditions" category="input" kind="map_string_string" description="Condition names and conditional expressions"/>
-    <property name="conditionsType" category="input" kind="enum" default="AND" description="Pass this task if all of the criteria pass (AND) or any of the criteria pass (OR)">
+    <property name="conditions" category="input" kind="map_string_string" description="Map of condition names to their evaluation expressions. Examples: Passed Compliance - ${passedCompliance}, Low Risk Prediction - ${riskPrediction} &lt; 0.1"/>
+    <property name="conditionsType" category="input" kind="enum" default="AND" description="Determines if all conditions must pass (AND) or any condition can pass (OR)">
       <enum-values>
         <value>AND</value>
         <value>OR</value>
       </enum-values>
     </property>
-    <property name="useOutput" category="input" kind="boolean" description="Complete this task, regardless of whether conditions pass/fail (use the task output in later tasks)"/>
-    <property name="gatePassed" category="output" description="Whether all conditions"/>
+    <property name="useOutput" category="input" kind="boolean" description="Complete task regardless of condition results (output can be used in subsequent tasks)"/>
+    <property name="gatePassed" category="output" description="Indicates whether the gate conditions were satisfied"/>
   </type>
 </synthetic>

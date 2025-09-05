@@ -14,9 +14,19 @@ if conditionsType == "AND":
 else:
     gatePassed = any(results)
 
+# Print dedicated success or failure message
+if gatePassed:
+    print("Gate passed successfully!")
+else:
+    failed_count = len([r for r in results if not r])
+    if failed_count == 1:
+        print("Gate failed! 1 condition was not satisfied.")
+    else:
+        print("Gate failed! {} conditions were not satisfied.".format(failed_count))
+
 table = u"""
 |Condition|Result|
-|---|---|
+|:------|:------:|
 """
 for index, condition in enumerate(conditions.keys()):
     result = u"\u2714" if results[index] else u"\u2717"
@@ -28,6 +38,7 @@ for index, condition in enumerate(conditions.keys()):
         condition_text = str(condition)
     table += u"|{}|{}|\n".format(condition_text + u"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", result)
 print(table)
+print("&nbsp;")
 
 if not useOutput and not gatePassed:
-    raise Exception("Gate failed with results list: {}".format(results))
+    raise Exception("Gate failed")
